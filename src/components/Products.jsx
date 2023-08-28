@@ -1,14 +1,14 @@
 import ProductsCard from "./ProductsCard";
-import { useGetProductsQuery } from "../api/apiSlice";
-
+import { selectAllProducts } from "../redux/productsSlice";
+import { getProductStatus } from "../redux/productsSlice";
+import { useSelector } from "react-redux";
 const Products = () => {
-  const { data: products, isLoading, isError, error } = useGetProductsQuery();
-  if (isLoading) {
-    return <p>Is loading </p>;
-  } else if (isError) {
-    return <p>{error}</p>;
-  }
+  const products = useSelector(selectAllProducts);
+  const loadingStatus = useSelector(getProductStatus);
 
+  if (loadingStatus === "loading") {
+    return <p>Loading </p>;
+  }
   return (
     <div className="py-10">
       <div className="flex flex-col items-center gap-4">

@@ -1,6 +1,7 @@
 import Home from "./pages/Home";
 import Layout from "./components/Layout";
-import { createBrowserRouter, RouterProvider, ScrollRestoration } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ProductPage from "./pages/ProductPage";
 
 const router = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/products/:id",
+        element: <ProductPage />,
       },
     ],
   },
