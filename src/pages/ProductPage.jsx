@@ -3,6 +3,7 @@ import { MdOutlineStar } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { addToCart } from "../redux/cartSlice";
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
 
 const ProductPage = () => {
   const location = useLocation();
@@ -75,7 +76,7 @@ const ProductPage = () => {
                     quantity: quantity,
                     description: details.description,
                   })
-                )
+                ) & toast.success(`${details.title} added to cart`)
               }
               className="bg-black text-white py-3 px-6 active:bg-gray-800"
             >
@@ -87,6 +88,18 @@ const ProductPage = () => {
           </p>
         </div>
       </div>
+      <ToastContainer
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };

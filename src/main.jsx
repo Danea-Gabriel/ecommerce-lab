@@ -5,6 +5,8 @@ import "./index.css";
 import { store } from "./app/store.js";
 import { Provider } from "react-redux";
 import { fetchProducts } from "./redux/productsSlice.js";
+import "react-toastify/dist/ReactToastify.css";
+
 store.dispatch(fetchProducts());
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
