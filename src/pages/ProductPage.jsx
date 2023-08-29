@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { addToCart } from "../redux/cartSlice";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import { IoMdAdd, IoMdRemove } from "react-icons/io";
 
 const ProductPage = () => {
   const location = useLocation();
@@ -54,14 +55,14 @@ const ProductPage = () => {
                   onClick={() => setQuantity(prev => (prev === 1 ? prev : prev - 1))}
                   className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
                 >
-                  -
+                  <IoMdRemove />
                 </button>
                 <span>{quantity}</span>
                 <button
                   onClick={() => setQuantity(prev => prev + 1)}
                   className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
                 >
-                  +
+                  <IoMdAdd />
                 </button>
               </div>
             </div>

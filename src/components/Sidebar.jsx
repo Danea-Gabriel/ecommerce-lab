@@ -2,11 +2,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { sideBarState } from "../redux/sidebarSlice";
 import { IoArrowForward } from "react-icons/io5";
 import { toggleSidebar } from "../redux/sidebarSlice";
-import { allCartProducts } from "../redux/cartSlice";
+import { allCartProducts, totalCartPrice } from "../redux/cartSlice";
+import { removeEverythingFromCart } from "../redux/cartSlice";
+import { FiTrash2 } from "react-icons/fi";
 import CartProduct from "./CartProduct";
+import { Link } from "react-router-dom";
 const Sidebar = () => {
   const showSideBar = useSelector(sideBarState);
   const cartProducts = useSelector(allCartProducts);
+  const total = useSelector(totalCartPrice);
 
   const dispatch = useDispatch();
   return (
@@ -16,7 +20,7 @@ const Sidebar = () => {
       }`}
     >
       <div className="flex items-center justify-between py-6 border-b">
-        <div className="uppercase text-sm font-semibold">Shopping Bag (0)</div>
+        <div className="uppercase text-sm font-semibold">Shopping Bag ({cartProducts.length})</div>
         <div
           onClick={() => dispatch(toggleSidebar())}
           className="cursor-pointer w-8 h-8 flex justify-center items-center"
@@ -24,10 +28,30 @@ const Sidebar = () => {
           <IoArrowForward />
         </div>
       </div>
-      <div>
+      <div className="flex flex-col gap-y-2 h-[520px]  lg:h-[640px] overflow-y-auto overflow-x-hidden border-b">
         {cartProducts.map(product => (
           <CartProduct key={product._id} product={product} />
         ))}
+      </div>
+      <div className=" flex flex-col gap-y-3 py-4 mt-4">
+        {/* sidebar bottom */}
+        <div className=" flex w-full justify-between">
+          <div className="uppercase font-medium">
+            <span className="mr-2">Total:</span> $ {total.toFixed(2)}
+          </div>
+          <div
+            onClick={() => dispatch(removeEverythingFromCart())}
+            className="cursor-pointer py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl"
+          >
+            <FiTrash2 />
+          </div>
+        </div>
+        <Link to="/cart" className="bg-gray-200 flex p-4 justify-center items-center w-full font-medium">
+          View Cart
+        </Link>
+        <Link to="/" className="bg-gray-800 text-white flex p-4 justify-center items-center w-full font-medium">
+          Checkout
+        </Link>
       </div>
     </div>
   );

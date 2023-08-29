@@ -34,7 +34,7 @@ const Navbar = () => {
               Blog
             </li>
           </ul>
-          <div onClick={() => dispatch(toggleSidebar())} className="relative">
+          <div onClick={() => dispatch(toggleSidebar())} className="relative cursor-pointer">
             <img className="w-7" src={bag} alt="shoppingbag" />
             <span className="absolute w-7 top-2 left-0 text-sm flex items-center justify-center font-semibold text-white">
               {cartProducts.length}
