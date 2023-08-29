@@ -2,35 +2,11 @@
 import { IoMdAdd, IoMdClose, IoMdRemove } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { removeFromCart } from "../redux/cartSlice";
-import { useState } from "react";
-import { updateCartItemQuantity } from "../redux/cartSlice";
+import { incrementQuantityCart, decrementQuantityCart } from "../redux/cartSlice";
+
 const CartProduct = ({ product }) => {
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(product.quantity || 1);
-  const handleAdd = () => {
-    const updateQunatity = quantity + 1;
-    setQuantity(updateQunatity);
-    dispatch(
-      updateCartItemQuantity({
-        _id: product._id,
-        quantity: updateQunatity,
-      })
-    );
-  };
 
-  const handleMinus = () => {
-    const updateQunatity = quantity - 1;
-    if (updateQunatity === 0) {
-      return;
-    }
-    setQuantity(updateQunatity);
-    dispatch(
-      updateCartItemQuantity({
-        _id: product._id,
-        quantity: updateQunatity,
-      })
-    );
-  };
   return (
     <div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200w-full font-light ">
       <div className="w-full min-h-[150px] flex items-center gap-x-4">
@@ -46,11 +22,6 @@ const CartProduct = ({ product }) => {
                 dispatch(
                   removeFromCart({
                     _id: product._id,
-                    title: product.title,
-                    image: product.image,
-                    price: product.price,
-                    quantity: product.quantity,
-                    description: product.description,
                   })
                 )
               }
@@ -62,11 +33,29 @@ const CartProduct = ({ product }) => {
           <div className="flex gap-x-2 h-[36px] text-sm">
             {/* add remove */}
             <div className="flex flex-1 max-w-[100px] items-center h-full border font-medium">
-              <div onClick={handleMinus} className="flex-1 h-full flex justify-center items-center cursor-pointer">
+              <div
+                onClick={() =>
+                  dispatch(
+                    decrementQuantityCart({
+                      _id: product._id,
+                    })
+                  )
+                }
+                className="flex-1 h-full flex justify-center items-center cursor-pointer"
+              >
                 <IoMdRemove />
               </div>
               <div className="h-full flex justify-center items-center items-centerpx-2">{product.quantity}</div>
-              <div onClick={handleAdd} className="flex-1 h-full flex justify-center items-center cursor-pointer">
+              <div
+                onClick={() =>
+                  dispatch(
+                    incrementQuantityCart({
+                      _id: product._id,
+                    })
+                  )
+                }
+                className="flex-1 h-full flex justify-center items-center cursor-pointer"
+              >
                 <IoMdAdd />
               </div>
             </div>
