@@ -41,7 +41,7 @@ const CartProduct = ({ product }) => {
                     })
                   )
                 }
-                className="flex-1 h-full flex justify-center items-center cursor-pointer"
+                className="flex-1 h-full flex justify-center items-center cursor-pointer hover:text-gray-600 duration-300"
               >
                 <IoMdRemove />
               </div>
@@ -54,9 +54,9 @@ const CartProduct = ({ product }) => {
                     })
                   )
                 }
-                className="flex-1 h-full flex justify-center items-center cursor-pointer"
+                className="flex-1 h-full flex justify-center items-center cursor-pointer hover:text-gray-600 duration-300"
               >
-                <IoMdAdd />
+                <IoMdAdd className="" />
               </div>
             </div>
             <div className="flex-1 flex items-center justify-around text-gray-600">${product.price}</div>

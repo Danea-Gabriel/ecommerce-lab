@@ -50,5 +50,16 @@ export const totalCartPrice = state => {
   });
   return total;
 };
+export const subtotalCartPrice = state => {
+  let subtotal = 0;
+  state.cart.productData.forEach(product => {
+    if (product.oldPrice) {
+      subtotal += product.oldPrice * product.quantity;
+    } else {
+      subtotal += product.price * product.quantity;
+    }
+  });
+  return subtotal;
+};
 
 export default cartSlice.reducer;

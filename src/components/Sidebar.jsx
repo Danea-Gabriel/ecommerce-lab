@@ -46,10 +46,16 @@ const Sidebar = () => {
             <FiTrash2 />
           </div>
         </div>
-        <Link to="/cart" className="bg-gray-200 flex p-4 justify-center items-center w-full font-medium">
+        <Link
+          to="/cart"
+          className="bg-gray-200 flex p-4 justify-center items-center w-full font-medium hover:bg-gray-300 duration-300"
+        >
           View Cart
         </Link>
-        <Link to="/" className="bg-gray-800 text-white flex p-4 justify-center items-center w-full font-medium">
+        <Link
+          to="/"
+          className="bg-gray-800 text-white flex p-4 justify-center items-center w-full font-medium hover:bg-black duration-300"
+        >
           Checkout
         </Link>
       </div>
