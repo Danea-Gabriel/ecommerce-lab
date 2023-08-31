@@ -28,7 +28,7 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   return (
     <div
-      className={`w-full  bg-white fixed top-[80px] right-0  h-full shadow-2xl md:w-[35vw] xl:max-w-[30vw] transition-all duration-300 z-20 lg: px-4 ${
+      className={`w-full  bg-white fixed top-[80px] right-0  h-full  shadow-2xl md:w-[35vw] lg:max-w-[35vw]  xl:max-w-[30vw] transition-all duration-300 z-20 lg: px-[35px] overflow-y-auto  ${
         showSideBar ? "translate-x-0 " : "translate-x-full"
       }`}
     >
@@ -41,12 +41,12 @@ const Sidebar = () => {
           <IoArrowForward />
         </div>
       </div>
-      <div className="flex flex-col gap-y-2 h-[520px]  lg:h-[640px] overflow-y-auto overflow-x-hidden border-b">
+      <div className="flex flex-col gap-y-2 h-[60%] overflow-x-hidden border-b">
         {cartProducts.map(product => (
           <CartProduct key={product._id} product={product} />
         ))}
       </div>
-      <div className=" flex flex-col gap-y-3 py-4 mt-4">
+      <div className=" flex flex-col gap-y-3 py-4 mt-4 md:mt-2  ">
         {/* sidebar bottom */}
         <div className=" flex w-full justify-between">
           <div className="uppercase font-medium">
