@@ -1,11 +1,27 @@
+/* eslint-disable no-unused-vars */
 import { configureStore } from "@reduxjs/toolkit";
 import productsReducer from "../redux/productsSlice";
-import cartReducer from "../redux/cartSlice";
-import sidebarReducer from "../redux/sidebarSlice";
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import rootReducer from "../redux";
+const persistConfig = {
+  key: "root",
+  version: 1,
+  storage,
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
   reducer: {
+    persisted: persistedReducer,
     products: productsReducer,
-    cart: cartReducer,
-    sidebar: sidebarReducer,
   },
+
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
+
+export let persistor = persistStore(store);

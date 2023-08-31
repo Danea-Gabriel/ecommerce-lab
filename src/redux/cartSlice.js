@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   productData: [],
-  userInfo: null,
 };
 
 export const cartSlice = createSlice({
@@ -42,17 +41,24 @@ export const cartSlice = createSlice({
 
 export const { addToCart, removeFromCart, incrementQuantityCart, decrementQuantityCart, removeEverythingFromCart } =
   cartSlice.actions;
-export const allCartProducts = state => state.cart.productData;
+export const allCartProducts = state => state.persisted.cart.productData;
+export const cartProductsQuantity = state => {
+  let total = 0;
+  state.persisted.cart.productData.forEach(product => {
+    total += product.quantity;
+  });
+  return total;
+};
 export const totalCartPrice = state => {
   let total = 0;
-  state.cart.productData.forEach(product => {
+  state.persisted.cart.productData.forEach(product => {
     total += product.price * product.quantity;
   });
   return total;
 };
 export const subtotalCartPrice = state => {
   let subtotal = 0;
-  state.cart.productData.forEach(product => {
+  state.persisted.cart.productData.forEach(product => {
     if (product.oldPrice) {
       subtotal += product.oldPrice * product.quantity;
     } else {

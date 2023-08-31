@@ -3,6 +3,8 @@ import Layout from "./components/Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
+import Login from "./pages/Login";
+import Payment from "./pages/Payment";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <CartPage />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       },
     ],
   },

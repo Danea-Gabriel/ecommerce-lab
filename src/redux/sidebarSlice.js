@@ -15,6 +15,6 @@ const sidebarSlice = createSlice({
 });
 
 export const { toggleSidebar } = sidebarSlice.actions;
-export const sideBarState = state => state.sidebar.isOpen;
+export const sideBarState = state => state.persisted.sidebar.isOpen;
 
 export default sidebarSlice.reducer;

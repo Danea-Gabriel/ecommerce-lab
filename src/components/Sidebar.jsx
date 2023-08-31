@@ -2,15 +2,28 @@ import { useSelector, useDispatch } from "react-redux";
 import { sideBarState } from "../redux/sidebarSlice";
 import { IoArrowForward } from "react-icons/io5";
 import { toggleSidebar } from "../redux/sidebarSlice";
-import { allCartProducts, totalCartPrice } from "../redux/cartSlice";
+import { allCartProducts, totalCartPrice, cartProductsQuantity } from "../redux/cartSlice";
 import { removeEverythingFromCart } from "../redux/cartSlice";
+import { userState } from "../redux/userSlice";
 import { FiTrash2 } from "react-icons/fi";
 import CartProduct from "./CartProduct";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const Sidebar = () => {
   const showSideBar = useSelector(sideBarState);
   const cartProducts = useSelector(allCartProducts);
+  const productsQuantity = useSelector(cartProductsQuantity);
   const total = useSelector(totalCartPrice);
+  const userInfo = useSelector(userState);
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    if (userInfo !== null) {
+      navigate("/payment");
+    } else {
+      toast.error("Please Login First");
+    }
+  };
 
   const dispatch = useDispatch();
   return (
@@ -20,7 +33,7 @@ const Sidebar = () => {
       }`}
     >
       <div className="flex items-center justify-between py-6 border-b">
-        <div className="uppercase text-sm font-semibold">Shopping Bag ({cartProducts.length})</div>
+        <div className="uppercase text-sm font-semibold">Shopping Bag ({productsQuantity})</div>
         <div
           onClick={() => dispatch(toggleSidebar())}
           className="cursor-pointer w-8 h-8 flex justify-center items-center"
@@ -52,12 +65,12 @@ const Sidebar = () => {
         >
           View Cart
         </Link>
-        <Link
-          to="/"
+        <button
+          onClick={handleCheckout}
           className="bg-gray-800 text-white flex p-4 justify-center items-center w-full font-medium hover:bg-black duration-300"
         >
           Checkout
-        </Link>
+        </button>
       </div>
     </div>
   );
