@@ -1,7 +1,7 @@
 import { logo, bag } from "../assets/index";
 import { Link } from "react-router-dom";
 import { cartProductsQuantity } from "../redux/cartSlice";
-import { toggleSidebar } from "../redux/sidebarSlice";
+import { toggleClose, toggleSidebar } from "../redux/sidebarSlice";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { userState } from "../redux/userSlice";
@@ -14,7 +14,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const handleHome = () => {
     navigate("/");
-    dispatch(toggleSidebar());
+    dispatch(toggleClose());
   };
   return (
     <div className="w-full h-20 bg-white border-b-[1px] border-b-gray-800 sticky top-0 z-50">
