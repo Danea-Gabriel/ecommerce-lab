@@ -6,11 +6,25 @@ import CartPageItem from "../components/CartPageItem";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { HiOutlineArrowLeft } from "react-icons/hi";
+import { userState } from "../redux/userSlice";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+
 const CartPage = () => {
   const dispatch = useDispatch();
   const totalPrice = useSelector(totalCartPrice);
   const allProducts = useSelector(allCartProducts);
   const subtotalPrice = useSelector(subtotalCartPrice);
+  const userInfo = useSelector(userState);
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    if (userInfo !== null) {
+      navigate("/payment");
+    } else {
+      toast.error("Please Login First");
+    }
+  };
 
   console.log(subtotalPrice);
   return (
@@ -48,7 +62,10 @@ const CartPage = () => {
           <p className="font-light flex justify-between mt-6">
             Total <span className="text-xl font-medium">${totalPrice.toFixed(2)}</span>
           </p>
-          <button className="bg-black text-white w-full py-3 mt-6 hover:bg-gray-800 duration-300">
+          <button
+            onClick={handleCheckout}
+            className="bg-black text-white w-full py-3 mt-6 hover:bg-gray-800 duration-300"
+          >
             Proceed to checkout
           </button>
         </div>
@@ -61,6 +78,18 @@ const CartPage = () => {
           go shopping
         </button>
       </Link>
+      <ToastContainer
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };

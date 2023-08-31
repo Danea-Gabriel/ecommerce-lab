@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { userState } from "../redux/userSlice";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
