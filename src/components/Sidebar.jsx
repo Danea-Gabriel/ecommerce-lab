@@ -28,7 +28,7 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   return (
     <div
-      className={`w-full  bg-white fixed top-[80px] right-0  h-full  shadow-2xl md:w-[35vw] lg:max-w-[35vw]  xl:max-w-[30vw] transition-all duration-300 z-20 lg: px-[35px] overflow-y-auto  ${
+      className={`w-full  bg-white fixed top-[80px] right-0  h-full  shadow-2xl md:w-[35vw] lg:max-w-[35vw]  xl:max-w-[30vw] transition-all duration-300 z-20 lg:px-[35px] overflow-y-auto  ${
         showSideBar ? "translate-x-0 " : "translate-x-full"
       }`}
     >
@@ -46,7 +46,7 @@ const Sidebar = () => {
           <CartProduct key={product._id} product={product} />
         ))}
       </div>
-      <div className=" flex flex-col gap-y-3 py-4 mt-4 md:mt-2  ">
+      <div className=" flex flex-col gap-y-3 py-4 mt-2 md:mt-4  ">
         {/* sidebar bottom */}
         <div className=" flex w-full justify-between">
           <div className="uppercase font-medium">
@@ -59,15 +59,12 @@ const Sidebar = () => {
             <FiTrash2 />
           </div>
         </div>
-        <Link
-          to="/cart"
-          className="bg-gray-200 flex p-4 justify-center items-center w-full font-medium hover:bg-gray-300 duration-300"
-        >
+        <Link to="/cart" className="bg-gray-200 text-center p-4  w-full font-medium hover:bg-gray-300 duration-300">
           View Cart
         </Link>
         <button
           onClick={handleCheckout}
-          className="bg-gray-800 text-white flex p-4 justify-center items-center w-full font-medium hover:bg-black duration-300"
+          className="bg-gray-800 text-white text-center p-4  w-full font-medium hover:bg-black duration-300"
         >
           Checkout
         </button>

@@ -20,7 +20,7 @@ const Products = () => {
           molestias a dolores!
         </p>
       </div>
-      <div className="max-w-screen-xl mx-auto py-10 grid grid-cols-4 gap-10 ">
+      <div className="max-w-screen-xl mx-auto  py-10 grid  md:grid-cols-4 gap-10 ">
         {products.map(product => (
           <ProductsCard key={product._id} product={product} />
         ))}

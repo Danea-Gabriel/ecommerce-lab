@@ -5,6 +5,7 @@ import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
 import Login from "./pages/Login";
 import Payment from "./pages/Payment";
+import BlogPage from "./pages/BlogPage";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/payment",
         element: <Payment />,
+      },
+      {
+        path: "/blog",
+        element: <BlogPage />,
       },
     ],
   },

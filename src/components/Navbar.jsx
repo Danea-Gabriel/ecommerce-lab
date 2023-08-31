@@ -31,6 +31,9 @@ const Navbar = () => {
                 Home
               </div>
             </li>
+            <li className="text-base text-black  font-bold  hover:text-orange-900 hover:underline underline-offset-2 decoration-offset-2 decoration-[1px] cursor-pointer duration-300 ">
+              <Link to="/blog">Blog</Link>
+            </li>
             <li className="text-base text-black font-bold  hover:text-orange-900 hover:underline underline-offset-2 decoration-offset-2 decoration-[1px] cursor-pointer duration-300 ">
               Pages
             </li>
@@ -39,9 +42,6 @@ const Navbar = () => {
             </li>
             <li className="text-base text-black font-bold   hover:text-orange-900 hover:underline underline-offset-2 decoration-offset-2 decoration-[1px] cursor-pointer duration-300 ">
               Element
-            </li>
-            <li className="text-base text-black  font-bold  hover:text-orange-900 hover:underline underline-offset-2 decoration-offset-2 decoration-[1px] cursor-pointer duration-300 ">
-              Blog
             </li>
           </ul>
           <div onClick={() => dispatch(toggleSidebar())} className="relative cursor-pointer ">
