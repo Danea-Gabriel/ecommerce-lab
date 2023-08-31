@@ -5,11 +5,17 @@ import { toggleSidebar } from "../redux/sidebarSlice";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { userState } from "../redux/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const productsQuantity = useSelector(cartProductsQuantity);
   const userInfo = useSelector(userState);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleHome = () => {
+    navigate("/");
+    dispatch(toggleSidebar());
+  };
   return (
     <div className="w-full h-20 bg-white border-b-[1px] border-b-gray-800 sticky top-0 z-50">
       <div className="max-w-screen-xl h-full mx-auto flex items-center justify-between">
@@ -21,7 +27,9 @@ const Navbar = () => {
         <div className="flex items-center gap-8 font-display">
           <ul className="flex items-center gap-8 font-display">
             <li className="text-base text-black font-bold   hover:text-orange-900 hover:underline underline-offset-2 decoration-offset-2 decoration-[1px] cursor-pointer duration-300 ">
-              <Link to="/">Home</Link>
+              <div onClick={handleHome} to="/">
+                Home
+              </div>
             </li>
             <li className="text-base text-black font-bold  hover:text-orange-900 hover:underline underline-offset-2 decoration-offset-2 decoration-[1px] cursor-pointer duration-300 ">
               Pages
