@@ -24,3 +24,7 @@ The primary objective of this project is to demonstrate the practical applicatio
 2. Cd to project
 3. Open terminal and run yarn
 4. yarn run dev
+
+# Desclaimer
+
+The webiste is not fully design responsive yet !
